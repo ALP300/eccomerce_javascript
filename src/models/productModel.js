@@ -2,40 +2,40 @@ import { pool } from "../config/database.js";
 
 export class ProductModel {
   static async getAll() {
-    const { rows } = await pool.query("SELECT * FROM products ORDER BY id ASC");
+    const { rows } = await pool.query("SELECT * FROM product ORDER BY id ASC");
     return rows;
   }
 
   static async getById(id) {
-    const { rows } = await pool.query("SELECT * FROM products WHERE id = $1", [id]);
+    const { rows } = await pool.query("SELECT * FROM product WHERE id = $1", [id]);
     return rows[0];
   }
 
   static async create(productData) {
-    const { name, description, price, stock, category } = productData;
+    const { name, description, price, stock } = productData;
     const query = `
-      INSERT INTO products (name, description, price, stock, category)
-      VALUES ($1, $2, $3, $4, $5)
+      INSERT INTO product (name, description, price, stock)
+      VALUES ($1, $2, $3, $4)
       RETURNING *
     `;
-    const { rows } = await pool.query(query, [name, description, price, stock, category]);
+    const { rows } = await pool.query(query, [name, description, price, stock]);
     return rows[0];
   }
 
   static async update(id, productData) {
-    const { name, description, price, stock, category } = productData;
+    const { name, description, price, stock } = productData;
     const query = `
-      UPDATE products
-      SET name = $1, description = $2, price = $3, stock = $4, category = $5
-      WHERE id = $6
+      UPDATE product
+      SET name = $1, description = $2, price = $3, stock = $4
+      WHERE id = $5
       RETURNING *
     `;
-    const { rows } = await pool.query(query, [name, description, price, stock, category, id]);
+    const { rows } = await pool.query(query, [name, description, price, stock, id]);
     return rows[0];
   }
 
   static async delete(id) {
-    const { rows } = await pool.query("DELETE FROM products WHERE id = $1 RETURNING *", [id]);
+    const { rows } = await pool.query("DELETE FROM product WHERE id = $1 RETURNING *", [id]);
     return rows[0];
   }
 }
