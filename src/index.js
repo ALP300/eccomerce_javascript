@@ -11,6 +11,13 @@ app.use(express.json());
 
 conectar();
 
+// Rutas
+app.use("/api/products", productRoutes);
+
+app.get("/", (req, res) => {
+    res.send("¡Hola desde el backend de Ecommerce!");
+});
+
 app.listen(port, () => {
     console.log(`Servidor corriendo en http://localhost:${port}`);
 });
