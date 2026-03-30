@@ -5,7 +5,6 @@ export class ProductModel {
     const { rows } = await pool.query("SELECT * FROM product ORDER BY id ASC");
     return rows;
   }
-
   static async getById(id) {
     const { rows } = await pool.query("SELECT * FROM product WHERE id = $1", [id]);
     return rows[0];
