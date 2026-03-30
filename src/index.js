@@ -11,7 +11,6 @@ app.use(express.json());
 
 conectar();
 
-// Rutas
 app.use("/api/products", productRoutes);
 
 app.get("/", (req, res) => {
