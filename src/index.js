@@ -3,6 +3,7 @@ import express from "express";
 import { conectar } from "./config/database.js";
 
 import productRoutes from "./routes/productRoutes.js";
+import setupSwagger from "./config/swagger.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -11,6 +12,7 @@ app.use(express.json());
 
 conectar();
 
+setupSwagger(app);
 app.use("/api/products", productRoutes);
 
 app.get("/", (req, res) => {
