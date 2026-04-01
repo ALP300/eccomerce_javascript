@@ -17,6 +17,10 @@ const options = {
         url: "http://localhost:3000/api",
         description: "Servidor local (Desarrollo)",
       },
+      {
+        url: "https://eccomerce-javascript.onrender.com/api",
+        description: "Servidor de Producción (Render)",
+      },
     ],
     components: {
       schemas: {
