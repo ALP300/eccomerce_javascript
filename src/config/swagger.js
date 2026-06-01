@@ -34,20 +34,24 @@ const options = {
             },
             name: {
               type: "string",
-              description: "Nombre del producto",
+              description: "Nombre del producto (se acepta también 'nombre')",
             },
             description: {
               type: "string",
-              description: "Breve descripción",
+              description: "Breve descripción (se acepta también 'descripcion')",
             },
             price: {
               type: "number",
               format: "float",
-              description: "Precio del producto",
+              description: "Precio del producto (se acepta también 'precio')",
             },
             stock: {
               type: "integer",
               description: "Cantidad disponible en inventario",
+            },
+            imagen_url: {
+              type: "string",
+              description: "URL de la imagen del producto",
             },
             created_at: {
               type: "string",

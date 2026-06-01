@@ -15,6 +15,7 @@ app.use(express.json());
 conectar();
 
 setupSwagger(app);
+
 app.use("/api/products", productRoutes);
 
 app.get("/", (req, res) => {
