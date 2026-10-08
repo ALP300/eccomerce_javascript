@@ -2,11 +2,11 @@ import { pool } from "../config/database.js";
 
 export class ProductModel {
   static async getAll() {
-    const { rows } = await pool.query("SELECT * FROM productos ORDER BY id ASC");
+    const { rows } = await pool.query("SELECT * FROM products ORDER BY id ASC");
     return rows;
   }
   static async getById(id) {
-    const { rows } = await pool.query("SELECT * FROM productos WHERE id = $1", [id]);
+    const { rows } = await pool.query("SELECT * FROM products WHERE id = $1", [id]);
     return rows[0];
   }
 
@@ -18,7 +18,7 @@ export class ProductModel {
     const imagen_url = productData.imagen_url || productData.imagenUrl || productData.imageUrl || productData.image_url;
 
     const query = `
-      INSERT INTO productos (nombre, descripcion, precio, stock, imagen_url)
+      INSERT INTO products (nombre, descripcion, precio, stock, imagen_url)
       VALUES ($1, $2, $3, $4, $5)
       RETURNING *
     `;
@@ -34,7 +34,7 @@ export class ProductModel {
     const imagen_url = productData.imagen_url || productData.imagenUrl || productData.imageUrl || productData.image_url;
 
     const query = `
-      UPDATE productos
+      UPDATE products
       SET nombre = $1, descripcion = $2, precio = $3, stock = $4, imagen_url = $5
       WHERE id = $6
       RETURNING *
@@ -44,7 +44,7 @@ export class ProductModel {
   }
 
   static async delete(id) {
-    const { rows } = await pool.query("DELETE FROM productos WHERE id = $1 RETURNING *", [id]);
+    const { rows } = await pool.query("DELETE FROM products WHERE id = $1 RETURNING *", [id]);
     return rows[0];
   }
 }
